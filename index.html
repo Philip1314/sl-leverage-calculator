@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trade Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator">
+        <h1>Trade Calculator</h1>
+
+        <div class="input-group">
+            <label for="positionType">Position Type:</label>
+            <select id="positionType">
+                <option value="long" selected>Long</option>
+                <option value="short">Short</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="entryPrice">Entry Price:</label>
+            <input type="number" id="entryPrice" step="any" placeholder="e.g., 1.2356">
+        </div>
+
+        <div class="input-group">
+            <label for="takeProfit">Take Profit Price:</label>
+            <input type="number" id="takeProfit" step="any" placeholder="e.g., 1.3238 (Long) or 1.1500 (Short)">
+        </div>
+
+        <div class="input-group">
+            <label for="riskPercent">Preferred Risk (%):</label>
+            <input type="number" id="riskPercent" step="any" placeholder="e.g., 10 for 10%">
+        </div>
+
+        <button id="calculateBtn">Calculate</button>
+
+        <div id="results" class="results-area" style="display: none;">
+            <h2>Results:</h2>
+            <p>Stop Loss Price: <span id="stopLossPrice"></span></p>
+            <p>Stop Loss Percentage: <span id="stopLossPercent"></span>%</p>
+            <p>Required Leverage: <span id="leverage"></span>x</p>
+             <p class="note">Note: Stop Loss calculated based on a 1:2 Risk-Reward Ratio from Entry/TP.</p>
+        </div>
+
+         <div id="error" class="error-area" style="display: none;">
+            </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
