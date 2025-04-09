@@ -66,12 +66,12 @@ document.getElementById('calculateBtn').addEventListener('click', function() {
          if (entryPrice !== 0 && stopLossPrice < entryPrice) { // Ensure SL is below entry for calculation
             stopLossPercentage = ((entryPrice - stopLossPrice) / entryPrice) * 100;
         } else if (entryPrice === 0){
-             errorDiv.textContent = 'Error: Entry price cannot be zero.';
-             errorDiv.style.display = 'block';
-             return;
+            errorDiv.textContent = 'Error: Entry price cannot be zero.';
+            errorDiv.style.display = 'block';
+            return;
         } else {
-             // This case should ideally not happen with TP > Entry and Risk > 0
-             stopLossPercentage = 0;
+            // This case should ideally not happen with TP > Entry and Risk > 0
+            stopLossPercentage = 0;
         }
 
     } else if (positionType === 'short') {
@@ -90,13 +90,13 @@ document.getElementById('calculateBtn').addEventListener('click', function() {
         stopLossPrice = entryPrice + riskDistance; // Add risk for short SL
         // Step 4: Calculate Stop Loss Percentage
          if (entryPrice !== 0 && stopLossPrice > entryPrice) { // Ensure SL is above entry
-             stopLossPercentage = ((stopLossPrice - entryPrice) / entryPrice) * 100; // Reversed for short %
+            stopLossPercentage = ((stopLossPrice - entryPrice) / entryPrice) * 100; // Reversed for short %
         } else if (entryPrice === 0){
             errorDiv.textContent = 'Error: Entry price cannot be zero.';
             errorDiv.style.display = 'block';
             return;
         } else {
-             // This case should ideally not happen with TP < Entry and Risk > 0
+            // This case should ideally not happen with TP < Entry and Risk > 0
             stopLossPercentage = 0;
         }
     }
@@ -107,8 +107,8 @@ document.getElementById('calculateBtn').addEventListener('click', function() {
         errorDiv.style.display = 'block';
         // Optionally display the potentially invalid SL price anyway
         resultsDiv.style.display = 'block';
-        stopLossPriceEl.textContent = stopLossPrice.toFixed(4);
-        stopLossPercentEl.textContent = stopLossPercentage.toFixed(2);
+        stopLossPriceEl.textContent = stopLossPrice;
+        stopLossPercentEl.textContent = stopLossPercentage.toFixed(2); // Rounded to 2 decimals
         leverageEl.textContent = 'N/A';
         return; // Stop before leverage calculation
     }
@@ -117,9 +117,9 @@ document.getElementById('calculateBtn').addEventListener('click', function() {
     const leverage = preferredRiskPercent / stopLossPercentage;
 
     // --- Display Results ---
-    stopLossPriceEl.textContent = stopLossPrice.toFixed(4); // Adjust decimals as needed
-    stopLossPercentEl.textContent = stopLossPercentage.toFixed(2);
-    leverageEl.textContent = leverage.toFixed(2);
+    stopLossPriceEl.textContent = stopLossPrice; // No rounding
+    stopLossPercentEl.textContent = stopLossPercentage.toFixed(2); // Rounded to 2 decimals
+    leverageEl.textContent = leverage.toFixed(2); // Rounded to 2 decimals
     resultsDiv.style.display = 'block'; // Show the results area
 
 });
